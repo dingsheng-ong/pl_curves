@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pl_curve import run
 import pandas
+import pytest
 import os
 
 
@@ -33,5 +34,5 @@ def test_run():
     data = pandas.read_csv("test.tsv", delimiter='\t', index_col=0)
     assert data.loc['Step I', 'Gini'] == 0.0
     assert data.loc['Step I', 'Corrected Gini'] == 0.0
-    assert data.loc['Step II', 'Gini'] == 0.2
-    assert data.loc['Step II', 'Corrected Gini'] == 0.4
+    assert data.loc['Step II', 'Gini'] == pytest.approx(0.2)
+    assert data.loc['Step II', 'Corrected Gini'] == pytest.approx(0.4)

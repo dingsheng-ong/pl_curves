@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pl_curve import make_gini_file
 import pandas
+import pytest
 import numpy as np
 import os
 
@@ -36,5 +37,5 @@ def test_make_gini_file():
     data = pandas.read_csv("test.tsv", delimiter='\t', index_col=0)
     assert data.loc['Step I', 'Gini'] == 0.0
     assert data.loc['Step I', 'Corrected Gini'] == 0.0
-    assert data.loc['Step II', 'Gini'] == 0.25
-    assert data.loc['Step II', 'Corrected Gini'] == 0.5
+    assert data.loc['Step II', 'Gini'] == pytest.approx(0.25)
+    assert data.loc['Step II', 'Corrected Gini'] == pytest.approx(0.5)

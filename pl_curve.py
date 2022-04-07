@@ -62,6 +62,7 @@ def calculate_gini(data):
     if data.size == 0:
         return math.nan
 
+    data = data.to_numpy()
     # Mean absolute difference
     mad = np.abs(np.subtract.outer(data, data)).mean()
     # Relative mean absolute difference
@@ -314,7 +315,7 @@ def make_gini_file(samples, gini_file):
         titles.append(col.columns[0])
     # make an empty data frame for the gini coefficients
     gini_dataframe = pd.DataFrame(columns=['Gini', 'Corrected Gini', 'n'],
-                                  index=titles)
+                                  index=titles, dtype=object)
 
     # make graph
     for col in samples:
